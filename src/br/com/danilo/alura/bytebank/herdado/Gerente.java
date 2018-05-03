@@ -1,6 +1,6 @@
 package br.com.danilo.alura.bytebank.herdado;
 
-public class Gerente extends FuncionarioAutenticavel {
+public class Gerente extends Funcionario  implements Autenticavel{
 
 	private int senha;
 
