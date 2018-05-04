@@ -1,12 +1,19 @@
 package br.com.danilo.alura.bytebank.herdado;
 
+import br.com.danilo.alura.bytebank.composicao.Autenticador;
+
 public class Cliente implements Autenticavel {
 
-	private int senha;
+	private Autenticador util;
+
+	public Cliente() {
+		this.util = new Autenticador();
+	}
 
 	@Override
 	public boolean autentica(int senha) {
-		if (this.senha == senha) {
+		boolean autenticou = this.util.autentica(senha);
+		if (autenticou) {
 			return true;
 		} else {
 			return false;
@@ -15,7 +22,7 @@ public class Cliente implements Autenticavel {
 
 	@Override
 	public void setSenha(int senha) {
-		this.senha = senha;
+		this.util.setSenha(senha);
 	}
 
 }

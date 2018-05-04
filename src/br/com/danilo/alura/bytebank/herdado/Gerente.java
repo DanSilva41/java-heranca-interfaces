@@ -1,15 +1,13 @@
 package br.com.danilo.alura.bytebank.herdado;
 
-public class Gerente extends Funcionario  implements Autenticavel{
+import br.com.danilo.alura.bytebank.composicao.Autenticador;
 
-	private int senha;
+public class Gerente extends Funcionario implements Autenticavel {
 
-	public boolean autentica(int senha) {
-		if (this.senha == senha) {
-			return true;
-		} else {
-			return false;
-		}
+	private Autenticador util;
+
+	public Gerente() {
+		this.util = new Autenticador();
 	}
 
 	@Override
@@ -17,11 +15,18 @@ public class Gerente extends Funcionario  implements Autenticavel{
 		return super.getSalario() + 1000;
 	}
 
-	public int getSenha() {
-		return senha;
+	@Override
+	public boolean autentica(int senha) {
+		boolean autenticou = this.util.autentica(senha);
+		if (autenticou) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
+	@Override
 	public void setSenha(int senha) {
-		this.senha = senha;
+		this.util.setSenha(senha);
 	}
 }
